@@ -39,42 +39,42 @@ const CONTENT = {
       openLabel: "Scomponi il piatto",
       ingNote: "Testo di esempio — da confermare",
       items: [
-        { n: "Battuta di Fassona piemontese", d: "Manzo piemontese battuto al coltello", img: "../images/blog/blog2.jpg",
+        { n: "Battuta di Fassona piemontese", d: "Manzo piemontese battuto al coltello", img: "images/blog/blog2.jpg",
           ing: [
             { n: "Fassona piemontese", d: "Razza magra: proteine complete, ferro e vitamina B12", icon: "beef" },
             { n: "Sedano", d: "Fibre, potassio e vitamina K, poche calorie", icon: "celery" },
             { n: "Grana Padano", d: "Stagionato oltre 12 mesi: calcio e proteine, naturalmente privo di lattosio", icon: "cheese" },
             { n: "Olio extravergine", d: "Grassi monoinsaturi e vitamina E", icon: "oliveoil" }
           ]},
-        { n: "Spaghetti alla bisque di crostacei", d: "Con briciole croccanti e pistacchio", img: "../images/blog/blog1.jpg",
+        { n: "Spaghetti alla bisque di crostacei", d: "Con briciole croccanti e pistacchio", img: "images/blog/blog1.jpg",
           ing: [
             { n: "Crostacei", d: "Proteine magre, selenio e iodio", icon: "shellfish" },
             { n: "Pistacchio di Bronte", d: "Grassi insaturi, fibre e vitamina B6", icon: "pistachio" },
             { n: "Pomodoro", d: "Fonte di licopene e vitamina C", icon: "tomato" },
             { n: "Grano duro", d: "Carboidrati complessi a rilascio lento", icon: "wheat" }
           ]},
-        { n: "Risotto all'Amarone", d: "Il classico veronese, mantecato lentamente", img: "../images/blog/blog3.jpg",
+        { n: "Risotto all'Amarone", d: "Il classico veronese, mantecato lentamente", img: "images/blog/blog3.jpg",
           ing: [
             { n: "Riso Vialone Nano", d: "Amido che manteca naturalmente; naturalmente senza glutine", icon: "rice" },
             { n: "Amarone della Valpolicella", d: "Vino veronese: polifenoli dell'uva; l'alcol evapora in cottura", icon: "wine" },
             { n: "Burro e Grana", d: "Calcio e vitamina A", icon: "butter" },
             { n: "Brodo di verdure", d: "Minerali e sapore senza grassi aggiunti", icon: "stock" }
           ]},
-        { n: "Tagliata di tonno", d: "In crosta di sesamo, cipolla rossa in agrodolce", img: "../images/blog/blog5.jpg",
+        { n: "Tagliata di tonno", d: "In crosta di sesamo, cipolla rossa in agrodolce", img: "images/blog/blog5.jpg",
           ing: [
             { n: "Tonno rosso", d: "Omega-3 EPA e DHA, proteine magre, vitamina D", icon: "tuna" },
             { n: "Sesamo", d: "Calcio, ferro e grassi insaturi", icon: "sesame" },
             { n: "Cipolla rossa di Tropea", d: "Antociani e quercetina", icon: "onion" },
             { n: "Aceto balsamico", d: "Dolcezza senza zuccheri aggiunti", icon: "vinegar" }
           ]},
-        { n: "Tagliatelle allo scoglio", d: "Cozze, vongole, gamberi e calamaretti", img: "../images/blog/blog4.jpg",
+        { n: "Tagliatelle allo scoglio", d: "Cozze, vongole, gamberi e calamaretti", img: "images/blog/blog4.jpg",
           ing: [
             { n: "Cozze e vongole", d: "Ferro, zinco e vitamina B12", icon: "mussels" },
             { n: "Gamberi", d: "Proteine magre e selenio", icon: "prawn" },
             { n: "Calamaretti", d: "Poche calorie, ricchi di fosforo", icon: "squid" },
             { n: "Prezzemolo e aglio", d: "Vitamina C e composti solforati", icon: "herbs" }
           ]},
-        { n: "Semifreddo al pistacchio", d: "Cuore di amarena", img: "../images/blog/blog6.jpg",
+        { n: "Semifreddo al pistacchio", d: "Cuore di amarena", img: "images/blog/blog6.jpg",
           ing: [
             { n: "Pistacchio", d: "Grassi buoni, fibre e magnesio", icon: "pistachio" },
             { n: "Amarena", d: "Antociani, colore naturale", icon: "cherry" },
@@ -183,42 +183,42 @@ const CONTENT = {
       openLabel: "Break the dish apart",
       ingNote: "Sample text — to be confirmed",
       items: [
-        { n: "Piedmontese Fassona beef tartare", d: "Hand-cut with a knife", img: "../images/blog/blog2.jpg",
+        { n: "Piedmontese Fassona beef tartare", d: "Hand-cut with a knife", img: "images/blog/blog2.jpg",
           ing: [
             { n: "Fassona beef", d: "A lean breed: complete protein, iron and vitamin B12", icon: "beef" },
             { n: "Celery", d: "Fibre, potassium and vitamin K, very low in calories", icon: "celery" },
             { n: "Grana Padano", d: "Aged over 12 months: calcium and protein, naturally lactose-free", icon: "cheese" },
             { n: "Extra virgin olive oil", d: "Monounsaturated fats and vitamin E", icon: "oliveoil" }
           ]},
-        { n: "Spaghetti in shellfish bisque", d: "Crisp crumb and pistachio", img: "../images/blog/blog1.jpg",
+        { n: "Spaghetti in shellfish bisque", d: "Crisp crumb and pistachio", img: "images/blog/blog1.jpg",
           ing: [
             { n: "Shellfish", d: "Lean protein, selenium and iodine", icon: "shellfish" },
             { n: "Bronte pistachio", d: "Unsaturated fats, fibre and vitamin B6", icon: "pistachio" },
             { n: "Tomato", d: "A source of lycopene and vitamin C", icon: "tomato" },
             { n: "Durum wheat", d: "Slow-release complex carbohydrates", icon: "wheat" }
           ]},
-        { n: "Amarone risotto", d: "The Veronese classic, stirred slowly", img: "../images/blog/blog3.jpg",
+        { n: "Amarone risotto", d: "The Veronese classic, stirred slowly", img: "images/blog/blog3.jpg",
           ing: [
             { n: "Vialone Nano rice", d: "Starch that thickens on its own; naturally gluten-free", icon: "rice" },
             { n: "Amarone della Valpolicella", d: "The Veronese wine: grape polyphenols; the alcohol cooks off", icon: "wine" },
             { n: "Butter and Grana", d: "Calcium and vitamin A", icon: "butter" },
             { n: "Vegetable stock", d: "Minerals and flavour without added fat", icon: "stock" }
           ]},
-        { n: "Seared tuna tagliata", d: "Sesame crust, sweet-and-sour red onion", img: "../images/blog/blog5.jpg",
+        { n: "Seared tuna tagliata", d: "Sesame crust, sweet-and-sour red onion", img: "images/blog/blog5.jpg",
           ing: [
             { n: "Bluefin tuna", d: "Omega-3 EPA and DHA, lean protein, vitamin D", icon: "tuna" },
             { n: "Sesame", d: "Calcium, iron and unsaturated fats", icon: "sesame" },
             { n: "Tropea red onion", d: "Anthocyanins and quercetin", icon: "onion" },
             { n: "Balsamic vinegar", d: "Sweetness with no added sugar", icon: "vinegar" }
           ]},
-        { n: "Seafood tagliatelle", d: "Mussels, clams, prawns and baby squid", img: "../images/blog/blog4.jpg",
+        { n: "Seafood tagliatelle", d: "Mussels, clams, prawns and baby squid", img: "images/blog/blog4.jpg",
           ing: [
             { n: "Mussels and clams", d: "Iron, zinc and vitamin B12", icon: "mussels" },
             { n: "Prawns", d: "Lean protein and selenium", icon: "prawn" },
             { n: "Baby squid", d: "Low in calories, rich in phosphorus", icon: "squid" },
             { n: "Parsley and garlic", d: "Vitamin C and sulphur compounds", icon: "herbs" }
           ]},
-        { n: "Pistachio semifreddo", d: "Sour cherry centre", img: "../images/blog/blog6.jpg",
+        { n: "Pistachio semifreddo", d: "Sour cherry centre", img: "images/blog/blog6.jpg",
           ing: [
             { n: "Pistachio", d: "Healthy fats, fibre and magnesium", icon: "pistachio" },
             { n: "Sour cherry", d: "Anthocyanins, natural colour", icon: "cherry" },

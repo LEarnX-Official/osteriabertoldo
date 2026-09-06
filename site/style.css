@@ -175,8 +175,8 @@ body.lamp-on .lamp{opacity:1}
 /* parallax photographic plate, warm-graded like a hand-tinted print */
 .hero-plate{
   position:absolute;inset:-8% -4%;z-index:0;
-  background-image:image-set(url("../images/home/home7.webp") type("image/webp"),
-                             url("../images/home/home7.jpg")  type("image/jpeg"));
+  background-image:image-set(url("images/home/home7.webp") type("image/webp"),
+                             url("images/home/home7.jpg")  type("image/jpeg"));
   background-position:center;background-size:cover;background-repeat:no-repeat;
   filter:sepia(.30) saturate(.95) brightness(.98) contrast(1.02);
   will-change:transform;

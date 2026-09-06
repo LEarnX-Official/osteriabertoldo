@@ -9,10 +9,25 @@ Open `site/index.html` **through a web server** (it works from `file://` too,
 but a server matches production):
 
 ```bash
-cd osteriabertoldo
+cd osteriabertoldo/site
 python3 -m http.server 8765
-# → http://localhost:8765/site/index.html
+# → http://localhost:8765/
 ```
+
+## Deploying
+
+`site/` is **self-contained** — it holds its own `images/`, and every path
+inside it is relative to that folder. Point the host at `site/` as the web
+root and nothing else is needed.
+
+| Cloudflare Pages | value |
+|---|---|
+| Build command | *(leave empty — no build step)* |
+| Build output directory | `site` |
+
+Image paths were once `../images/…`, which climbed above the web root and
+404'd on any host rooted at `site/`. They are now `images/…`, so the folder
+works wherever it is mounted.
 
 ---
 
@@ -54,7 +69,7 @@ site/
   icons.js      24 hand-drawn ingredient illustrations (inline SVG)
   app.js        rendering, language switch, nav, booking form,
                 and the animation layer
-images/         scraped from the current live site
+  images/       scraped from the current live site
 ```
 
 The old 3D build's `models/` and `renders/` folders have been removed. They are
