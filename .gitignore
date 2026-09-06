@@ -1,0 +1,15 @@
+# Sales outreach — drafts about a real business, not for a public repo
+outreach/
+
+# Archive of the abandoned 3D build (2.8MB). Kept locally as a safety net;
+# nothing in the site references it.
+models-3d-archive.tar.gz
+
+# Local scratch
+*.bak
+_*.html
+.DS_Store
+
+# Python bytecode
+__pycache__/
+*.pyc

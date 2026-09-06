@@ -1,0 +1,791 @@
+/* ===========================================================
+   CARTA D'EPOCA — Osteria il Bertoldo
+   Light vintage design system: aged paper, letterpress ink,
+   oxblood and antique brass. No 3D — everything moves in CSS.
+   =========================================================== */
+
+:root{
+  /* --- paper & ink (light grade) --- */
+  --paper:#F5EFE2;          /* aged cream — the page */
+  --paper-2:#EFE7D6;        /* deckled edge, alternating bands */
+  --paper-3:#E7DCC6;        /* pressed panel */
+  --card:#FBF7EE;           /* fresh leaf, raised surfaces */
+  --ink:#2A231C;            /* warm printing ink */
+  --ink-soft:#5C5044;       /* body copy */
+  --muted:#8B7D6B;          /* faded pencil */
+  --line:rgba(42,35,28,.14);
+  --ink-deep:#171310;      /* the dark bands: dish scenes, reviews */
+
+  --primary:#8B1A1A;        /* oxblood — the feature wall */
+  --primary-lift:#A32222;
+  --primary-wash:rgba(139,26,26,.08);
+  --accent:#9A7B21;         /* antique brass, darkened for light paper */
+  --accent-lift:#C9A227;
+  --accent-soft:rgba(154,123,33,.28);
+
+  --radius:3px;
+  --measure:66ch;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --slow:640ms;
+  --mid:400ms;
+  --fast:220ms;
+
+  --f-head:"Playfair Display",Georgia,"Times New Roman",serif;
+  --f-body:"Source Sans 3",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+
+  --shadow-lift:0 26px 50px -26px rgba(58,44,30,.44),0 6px 14px -8px rgba(58,44,30,.20);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:light}
+body{
+  margin:0;background:var(--paper);color:var(--ink-soft);
+  font-family:var(--f-body);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+picture{display:contents}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+h1,h2,h3{font-family:var(--f-head);font-weight:600;line-height:1.06;margin:0;color:var(--ink)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:2px}
+/* keyboard users can jump the nav */
+.skip{
+  position:fixed;top:-100px;left:1rem;z-index:200;padding:.7rem 1.1rem;
+  background:var(--primary);color:#FBF7EE;border-radius:var(--radius);
+  font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  transition:top var(--fast) var(--ease);
+}
+.skip:focus{top:1rem}
+::selection{background:rgba(139,26,26,.18);color:var(--ink)}
+
+/* ---------- shared atoms ---------- */
+.eyebrow{
+  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--primary);margin:0 0 1.1rem;font-weight:500;
+  display:flex;align-items:center;gap:.7rem;
+}
+.eyebrow::before{
+  content:"";width:26px;height:1px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 700ms var(--ease-out) 120ms;
+}
+.in .eyebrow::before,.eyebrow.in::before{transform:scaleX(1)}
+.rule{height:1px;background:linear-gradient(90deg,var(--accent),rgba(154,123,33,.05));
+  border:0;margin:1.6rem 0;width:120px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3.5rem)}
+section{padding:clamp(5rem,11vw,9.5rem) 0;position:relative}
+.sec-head{margin-bottom:clamp(2.5rem,5vw,4rem)}
+section h2{font-size:clamp(2.4rem,5.6vw,4.4rem);letter-spacing:-.012em;line-height:1.02}
+.lede{color:var(--muted);max-width:var(--measure);font-size:1.05rem}
+
+/* alternating paper bands so sections read as separate leaves */
+#storia,#menu,#prenota{background:var(--paper-2)}
+#storia::before,#menu::before,#prenota::before{
+  content:"";position:absolute;inset:0 0 auto;height:1px;
+  background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+  padding:.95rem 1.9rem;border-radius:var(--radius);border:1px solid transparent;
+  font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  overflow:hidden;isolation:isolate;
+  transition:transform var(--mid) var(--ease),color var(--mid),border-color var(--mid),
+             box-shadow var(--mid) var(--ease);
+}
+.btn::before{ /* ink wipe on hover */
+  content:"";position:absolute;inset:0;z-index:-1;
+  transform:translateY(101%);transition:transform 520ms var(--ease-out);
+}
+.btn-primary{background:var(--primary);color:#FBF7EE;border-color:var(--primary);
+  box-shadow:0 2px 0 rgba(58,20,20,.35),inset 0 1px 0 rgba(255,255,255,.14)}
+.btn-primary::before{background:var(--ink)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 26px -14px rgba(58,20,20,.6)}
+.btn-primary:hover::before{transform:translateY(0)}
+.btn-ghost{border-color:var(--accent-soft);color:var(--ink);background:transparent}
+.btn-ghost::before{background:var(--ink)}
+.btn-ghost:hover{color:var(--card);border-color:var(--ink);transform:translateY(-3px)}
+.btn-ghost:hover::before{transform:translateY(0)}
+
+/* ---------- scroll progress rail ---------- */
+.progress{
+  position:fixed;top:0;left:0;height:2px;z-index:80;width:100%;
+  transform:scaleX(0);transform-origin:left;
+  background:linear-gradient(90deg,var(--primary),var(--accent-lift));
+}
+
+/* ---------- cursor lamp: a warm pool that follows the pointer ---------- */
+.lamp{
+  position:fixed;top:0;left:0;width:520px;height:520px;z-index:0;pointer-events:none;
+  margin:-260px 0 0 -260px;opacity:0;
+  background:radial-gradient(circle,rgba(201,162,39,.16),rgba(201,162,39,.05) 42%,transparent 70%);
+  transition:opacity 700ms var(--ease);
+}
+body.lamp-on .lamp{opacity:1}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;
+  gap:2rem;padding:1.25rem clamp(1.25rem,5vw,3.5rem);
+  transition:background var(--mid),backdrop-filter var(--mid),border-color var(--mid),
+             padding var(--mid) var(--ease),box-shadow var(--mid);
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(245,239,226,.88);backdrop-filter:blur(14px) saturate(1.15);
+  border-bottom-color:var(--line);padding-block:.85rem;
+  box-shadow:0 10px 30px -22px rgba(58,44,30,.5);
+}
+.nav.hide{transform:translateY(-100%)}
+.nav{transition-property:background,backdrop-filter,border-color,padding,box-shadow,transform}
+.brand{font-family:var(--f-head);font-size:1.18rem;letter-spacing:.03em;white-space:nowrap;color:var(--ink)}
+.brand span{color:var(--primary);font-style:italic}
+.nav-links{display:flex;gap:1.9rem;margin-inline:auto}
+.nav-links a{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  position:relative;padding-bottom:4px;transition:color var(--mid);
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+  background:var(--primary);transform:scaleX(0);transform-origin:right;
+  transition:transform 460ms var(--ease-out);
+}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left}
+.nav-right{display:flex;align-items:center;gap:1.15rem;white-space:nowrap}
+.lang{display:flex;gap:.3rem;align-items:center;font-size:.72rem;letter-spacing:.1em}
+.lang button{background:none;border:0;color:var(--muted);padding:.2rem .3rem;transition:color var(--mid)}
+.lang button[aria-pressed="true"]{color:var(--primary);font-weight:500}
+.lang i{color:var(--line);font-style:normal}
+.tel{display:flex;align-items:center;gap:.45rem;font-size:.8rem;color:var(--ink-soft);transition:color var(--mid)}
+.tel:hover{color:var(--primary)}
+.tel svg{width:14px;height:14px;stroke:var(--primary);fill:none;stroke-width:1.6}
+.burger{display:none;background:none;border:0;padding:.4rem;flex-direction:column;gap:4px}
+.burger span{display:block;width:22px;height:1.5px;background:var(--ink);
+  transition:transform var(--mid) var(--ease),opacity var(--mid)}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;display:flex;align-items:center;position:relative;
+  overflow:hidden;padding:0;background:var(--paper);
+}
+/* parallax photographic plate, warm-graded like a hand-tinted print */
+.hero-plate{
+  position:absolute;inset:-8% -4%;z-index:0;
+  background-image:image-set(url("../images/home/home7.webp") type("image/webp"),
+                             url("../images/home/home7.jpg")  type("image/jpeg"));
+  background-position:center;background-size:cover;background-repeat:no-repeat;
+  filter:sepia(.30) saturate(.95) brightness(.98) contrast(1.02);
+  will-change:transform;
+  transform:scale(1.06);
+}
+.hero-veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(100deg,var(--paper) 4%,rgba(245,239,226,.90) 28%,rgba(245,239,226,.34) 56%,rgba(245,239,226,0) 78%),
+    radial-gradient(65% 55% at 80% 24%,rgba(201,162,39,.22),transparent 60%),
+    linear-gradient(180deg,transparent 62%,rgba(23,19,16,.28));
+}
+/* engraved frame line, like a printed plate border */
+.hero-frame{
+  position:absolute;z-index:2;pointer-events:none;
+  inset:clamp(1rem,3.2vw,2.2rem);
+  border:1px solid rgba(154,123,33,.30);
+  clip-path:inset(0 0 0 0);
+}
+.hero-frame::before,.hero-frame::after{
+  content:"";position:absolute;width:9px;height:9px;border:1px solid var(--accent);
+}
+.hero-frame::before{top:-5px;left:-5px;border-right:0;border-bottom:0}
+.hero-frame::after{bottom:-5px;right:-5px;border-left:0;border-top:0}
+.hero-inner{position:relative;z-index:3;width:100%;padding-top:clamp(4rem,9vh,7rem)}
+.hero-copy{max-width:38rem}
+.hero h1{font-size:clamp(2.9rem,8vw,6.2rem);letter-spacing:-.018em;margin-bottom:.4rem}
+.hero h1 em{font-style:italic;color:var(--primary)}
+.hero .sub{color:var(--ink-soft);font-size:clamp(1rem,1.7vw,1.2rem);max-width:31rem;margin:0 0 2.4rem}
+.hero-cta{display:flex;gap:.9rem;flex-wrap:wrap}
+
+/* headline mask reveal — each line rises out of the paper */
+.line-mask{display:block;overflow:hidden}
+.line-mask>span{display:block;transform:translateY(105%);
+  transition:transform 1000ms var(--ease-out)}
+.ready .line-mask>span{transform:translateY(0)}
+.ready .line-mask:nth-child(2)>span{transition-delay:110ms}
+.hero .eyebrow,.hero .rule,.hero .sub,.hero-cta{
+  opacity:0;transform:translateY(18px);
+  transition:opacity 800ms var(--ease-out),transform 800ms var(--ease-out);
+}
+.ready .hero .eyebrow{opacity:1;transform:none;transition-delay:240ms}
+.ready .hero .rule    {opacity:1;transform:none;transition-delay:340ms}
+.ready .hero .sub     {opacity:1;transform:none;transition-delay:420ms}
+.ready .hero-cta      {opacity:1;transform:none;transition-delay:520ms}
+
+.scroll-cue{
+  position:absolute;left:clamp(1.25rem,5vw,3.5rem);bottom:2.4rem;z-index:3;
+  display:flex;align-items:center;gap:.8rem;font-size:.66rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);
+}
+.scroll-cue::before{content:"";width:52px;height:1px;background:var(--primary);opacity:.6;
+  transform-origin:left;animation:cue 2.6s var(--ease) infinite}
+@keyframes cue{0%,100%{transform:scaleX(.35);opacity:.3}50%{transform:scaleX(1);opacity:.9}}
+.socials{position:absolute;right:clamp(1.25rem,5vw,3.5rem);bottom:2.4rem;z-index:3;display:flex;gap:1.1rem}
+.socials a{color:var(--muted);transition:color var(--mid),transform var(--mid) var(--ease)}
+.socials a:hover{color:var(--primary);transform:translateY(-3px)}
+.socials svg{width:17px;height:17px;fill:currentColor}
+
+/* ---------- marquee: a running printed banner ---------- */
+.marquee{
+  border-block:1px solid var(--line);background:var(--paper-3);
+  overflow:hidden;padding:.95rem 0;position:relative;
+}
+.marquee-track{display:flex;width:max-content;animation:slide 38s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{
+  font-family:var(--f-head);font-size:1.05rem;font-style:italic;color:var(--ink);
+  padding:0 2.2rem;display:flex;align-items:center;gap:2.2rem;white-space:nowrap;
+}
+.marquee span::after{content:"✦";color:var(--accent);font-size:.7rem;font-style:normal}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- story ---------- */
+.story-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(2.5rem,7vw,6rem);align-items:center}
+.story-copy h2{font-size:clamp(2.2rem,3.8vw,3.3rem)}
+.story-copy p{color:var(--ink-soft);max-width:var(--measure)}
+#storiaBody p:first-child{color:var(--ink);font-size:1.14rem;line-height:1.6;display:flow-root;margin-top:0}
+/* drop cap — the vintage tell */
+#storiaBody p:first-child::first-letter{
+  float:left;font-family:var(--f-head);font-size:4.2rem;line-height:.8;
+  padding:.06em .12em 0 0;margin:0;color:var(--primary);font-weight:400;
+}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:2.8rem}
+.pillar{border-top:1px solid var(--line);padding-top:.95rem;position:relative}
+.pillar::before{content:"";position:absolute;top:-1px;left:0;height:1px;width:100%;
+  background:var(--primary);transform:scaleX(0);transform-origin:left;
+  transition:transform 700ms var(--ease-out)}
+.pillar.in::before{transform:scaleX(1)}
+.pillar b{display:block;font-weight:500;font-size:.96rem;margin-bottom:.2rem;color:var(--ink)}
+.pillar span{color:var(--muted);font-size:.85rem}
+
+.story-img{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;box-shadow:0 40px 70px -34px rgba(58,44,30,.55)}
+.story-img img{width:100%;height:100%;object-fit:cover;
+  filter:sepia(.24) saturate(.92) brightness(1.04) contrast(.98);
+  transform:scale(1.12);transition:transform 1600ms var(--ease-out)}
+.story-img.in img{transform:scale(1)}
+.story-img::after{content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(154,123,33,.30),inset 0 0 60px 14px rgba(245,239,226,.42)}
+
+/* curtain wipe on every framed image */
+.wipe{position:relative;overflow:hidden}
+.wipe::before{
+  content:"";position:absolute;inset:0;z-index:4;background:var(--paper);
+  transform-origin:right;transition:transform 1100ms var(--ease-out);
+}
+.wipe.in::before{transform:scaleX(0)}
+
+/* ---------- dishes: alternating cinematic scenes ----------
+   Each dish owns a full-bleed band. The photograph is inset and
+   framed inside it, so a 534px snap never has to be upscaled —
+   the drama comes from the scale of the type and the band, not
+   from stretching the image. */
+.dish-hint{color:var(--muted);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
+#piatti{padding-bottom:0}
+.dishes{position:relative}
+.dishes::before{ /* the page darkens into the first band */
+  content:"";position:absolute;top:-90px;left:0;right:0;height:90px;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(23,19,16,.10) 55%,rgba(23,19,16,.30));
+}
+.dishes{display:block}
+
+.scene{
+  position:relative;min-height:88vh;display:grid;align-items:center;
+  grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);
+  padding:clamp(4rem,9vw,8rem) clamp(1.25rem,6vw,6rem);
+  overflow:hidden;isolation:isolate;
+}
+/* the band's own ground: deep ink, so it cuts against the cream page */
+.scene::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:var(--ink-deep);
+}
+/* a blurred, darkened blow-up of the same photo fills the band —
+   it is deliberately out of focus, so its low resolution never shows */
+.scene-bg{
+  position:absolute;inset:-6%;z-index:-1;pointer-events:none;
+  background-size:cover;background-position:center;
+  filter:blur(46px) saturate(.55) brightness(.32) sepia(.4);
+  transform:scale(1.15);opacity:.85;
+  will-change:transform;
+}
+.scene::after{ /* lamplight from above, corners fall away */
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(80% 60% at 50% 0%,rgba(201,162,39,.22),transparent 60%),
+    radial-gradient(100% 100% at 50% 50%,transparent 40%,rgba(8,6,5,.72) 100%);
+}
+.scene:nth-child(even){direction:rtl}
+.scene:nth-child(even) > *{direction:ltr}
+
+/* the framed plate */
+.scene-plate{
+  position:relative;justify-self:center;width:min(100%,440px);aspect-ratio:1;
+  border-radius:2px;overflow:hidden;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.85),0 0 0 1px rgba(201,162,39,.28);
+  transform:translateY(40px) scale(.94);opacity:0;
+  transition:transform 1400ms var(--ease-out),opacity 1100ms var(--ease-out);
+}
+.scene.in .scene-plate{transform:none;opacity:1}
+.scene-plate img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(1.02) contrast(1.06) brightness(.98);
+  transform:scale(1.02);
+  transition:transform 1600ms var(--ease-out),filter 900ms var(--ease);
+}
+.scene-plate:hover img{transform:scale(1.09);filter:saturate(1.1) contrast(1.08) brightness(1.04)}
+/* an inner printed edge keeps the soft photo from floating */
+.scene-plate::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  box-shadow:inset 0 0 0 1px rgba(251,247,238,.16),inset 0 0 70px 12px rgba(8,6,5,.5);
+}
+/* the brass plate ring, drawn on scroll */
+.scene-plate > svg{position:absolute;inset:0;z-index:3;width:100%;height:100%;pointer-events:none}
+.scene-plate > svg circle{
+  fill:none;stroke:rgba(201,162,39,.75);stroke-width:.5;
+  stroke-dasharray:302;stroke-dashoffset:302;
+  transition:stroke-dashoffset 1800ms var(--ease-out) 300ms;
+}
+.scene.in .scene-plate > svg circle{stroke-dashoffset:0}
+
+/* the copy side */
+.scene-copy{position:relative;z-index:1;max-width:34rem;color:#EFE7D6}
+.scene-no{
+  display:block;font-family:var(--f-head);font-size:clamp(3.4rem,7vw,6rem);
+  line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(201,162,39,.55);
+  margin-bottom:.4rem;
+  opacity:0;transform:translateY(24px);
+  transition:opacity 900ms var(--ease-out),transform 900ms var(--ease-out);
+}
+.scene.in .scene-no{opacity:1;transform:none}
+.scene-copy h3{
+  font-size:clamp(1.9rem,4.2vw,3.2rem);letter-spacing:-.012em;color:#FBF7EE;
+  margin-bottom:1rem;text-shadow:0 2px 24px rgba(0,0,0,.5);
+  opacity:0;transform:translateY(28px);
+  transition:opacity 1000ms var(--ease-out) 120ms,transform 1000ms var(--ease-out) 120ms;
+}
+.scene.in .scene-copy h3{opacity:1;transform:none}
+.scene-copy p{
+  color:rgba(239,231,214,.76);font-size:1.06rem;max-width:30rem;margin:0;
+  opacity:0;transform:translateY(22px);
+  transition:opacity 1000ms var(--ease-out) 240ms,transform 1000ms var(--ease-out) 240ms;
+}
+.scene.in .scene-copy p{opacity:1;transform:none}
+.scene-copy .rule{
+  background:linear-gradient(90deg,var(--accent-lift),rgba(201,162,39,.05));
+  width:0;transition:width 1100ms var(--ease-out) 300ms;box-shadow:none;
+}
+.scene.in .scene-copy .rule{width:120px}
+
+@media (max-width:860px){
+  .scene{grid-template-columns:1fr;min-height:auto;gap:2.2rem;direction:ltr!important}
+  .scene:nth-child(even){direction:ltr}
+  .scene-plate{width:min(100%,380px)}
+  .scene-copy{max-width:none}
+}
+
+/* ---------- the shatter: a dish breaks into its ingredients ----------
+   The plate is tiled with N absolutely-positioned shards, each showing
+   the same photo offset by background-position so together they rebuild
+   the image. On open they fly outward and fade; the ingredient list is
+   revealed beneath. Nothing here is loaded — the shards reuse the one
+   image the plate already shows. */
+.scene-plate{cursor:pointer;transform-style:preserve-3d}
+/* the shard field is a real 3D space: shards rotate on all three axes and
+   fly toward the viewer, so the break reads as depth, not a flat slide */
+.shards{
+  position:absolute;inset:0;z-index:4;pointer-events:none;
+  perspective:900px;perspective-origin:50% 45%;transform-style:preserve-3d;
+}
+.shard{
+  position:absolute;background-repeat:no-repeat;
+  will-change:transform,opacity;backface-visibility:hidden;
+  transform-style:preserve-3d;
+  box-shadow:0 0 0 .5px rgba(23,19,16,.35);
+  transition:transform 1250ms cubic-bezier(.2,.7,.25,1),
+             opacity 1000ms var(--ease-out),
+             filter 1000ms var(--ease-out);
+}
+.scene.broken .shard{opacity:0;filter:brightness(1.35)}
+
+/* the "open" affordance sitting on the plate */
+.plate-cue{
+  position:absolute;left:50%;bottom:1rem;transform:translateX(-50%);z-index:6;
+  display:inline-flex;align-items:center;gap:.5rem;white-space:nowrap;
+  padding:.5rem .9rem;border-radius:999px;
+  background:rgba(23,19,16,.72);backdrop-filter:blur(6px);
+  border:1px solid rgba(201,162,39,.4);color:#F3EADA;
+  font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  transition:opacity var(--mid) var(--ease),transform var(--mid) var(--ease);
+}
+.plate-cue::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent-lift)}
+.scene.broken .plate-cue{opacity:0;transform:translateX(-50%) translateY(8px)}
+
+/* the ingredient panel that the shatter reveals */
+.ingredients{
+  position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;
+  justify-content:center;gap:.3rem;padding:1.3rem 1.2rem;
+  background:linear-gradient(160deg,rgba(23,19,16,.94),rgba(23,19,16,.86));
+  border:1px solid rgba(201,162,39,.30);
+  opacity:0;visibility:hidden;transform:translateZ(-40px) scale(.97);
+  transition:opacity 700ms var(--ease-out) 240ms,transform 800ms var(--ease-out) 240ms,visibility 0s 940ms;
+  overflow-y:auto;
+}
+.scene.broken .ingredients{opacity:1;visibility:visible;transform:none;transition-delay:240ms,240ms,0s}
+.ing{
+  display:grid;grid-template-columns:32px 1fr;column-gap:.7rem;align-items:center;
+  opacity:0;transform:translateY(14px);
+  transition:opacity 620ms var(--ease-out),transform 620ms var(--ease-out);
+  border-bottom:1px solid rgba(201,162,39,.16);padding-bottom:.42rem;
+}
+.ing:last-of-type{border-bottom:0}
+.ing{padding-bottom:.36rem}
+.scene.broken .ing{opacity:1;transform:none}
+.scene.broken .ing:nth-child(1) .ing-ico{transition-delay:480ms}
+.scene.broken .ing:nth-child(2) .ing-ico{transition-delay:580ms}
+.scene.broken .ing:nth-child(3) .ing-ico{transition-delay:680ms}
+.scene.broken .ing:nth-child(4) .ing-ico{transition-delay:780ms}
+.scene.broken .ing:nth-child(5) .ing-ico{transition-delay:880ms}
+.scene.broken .ing:nth-child(1){transition-delay:420ms}
+.scene.broken .ing:nth-child(2){transition-delay:520ms}
+.scene.broken .ing:nth-child(3){transition-delay:620ms}
+.scene.broken .ing:nth-child(4){transition-delay:720ms}
+.scene.broken .ing:nth-child(5){transition-delay:820ms}
+.ing-ico{
+  position:static;grid-column:1;grid-row:1 / span 2;
+  width:32px;height:32px;min-width:32px;
+  fill:none;stroke:var(--accent-lift);stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;color:var(--accent-lift);
+  transform:rotateY(-90deg) scale(.6);transform-origin:center;
+  opacity:0;transition:transform 760ms var(--ease-out),opacity 620ms var(--ease-out);
+}
+.scene.broken .ing-ico{transform:none;opacity:1}
+.ing b{
+  grid-column:2;grid-row:1;
+  display:block;font-family:var(--f-head);font-weight:600;
+  font-size:clamp(.84rem,1.25vw,.95rem);color:#FBF7EE;line-height:1.2;
+}
+.ing span{grid-column:2;grid-row:2;display:block;font-size:clamp(.65rem,1vw,.74rem);color:rgba(239,231,214,.68);line-height:1.3}
+.ing-note{
+  margin:.35rem 0 0;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(201,162,39,.75);
+  opacity:0;transition:opacity 500ms var(--ease) 900ms;
+}
+.scene.broken .ing-note{opacity:1}
+
+@media (max-width:860px){
+  .ingredients{padding:1.1rem;gap:.4rem}
+}
+
+/* ---------- menu ---------- */
+.menu-note{
+  display:flex;gap:.7rem;align-items:flex-start;background:var(--primary-wash);
+  border-left:2px solid var(--primary);padding:.85rem 1.1rem;border-radius:2px;
+  color:var(--ink-soft);font-size:.83rem;margin-bottom:2.8rem;max-width:44rem;
+}
+.menu-note strong{color:var(--ink);font-weight:500}
+.menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.2rem,5vw,4.5rem)}
+.menu-sec{margin-bottom:2.8rem;break-inside:avoid}
+.menu-sec h3{font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:.3rem;letter-spacing:-.01em}
+.menu-sec .rule{margin:.9rem 0 1.3rem}
+.m-item{
+  display:flex;gap:1rem;align-items:baseline;padding:.72rem .5rem;
+  border-bottom:1px solid var(--line);margin-inline:-.5rem;border-radius:2px;
+  transition:background var(--fast),transform var(--fast) var(--ease);
+}
+.m-item:last-child{border-bottom:0}
+.m-item:hover{background:rgba(154,123,33,.07);transform:translateX(5px)}
+.m-text{flex:1}
+.m-text b{font-weight:500;font-size:1rem;display:block;color:var(--ink)}
+.m-text span{color:var(--muted);font-size:.85rem}
+.m-dot{flex:1;border-bottom:1px dotted rgba(139,125,107,.5);min-width:1.2rem;transform:translateY(-4px)}
+.m-price{font-variant-numeric:tabular-nums;color:var(--primary);font-size:.98rem;white-space:nowrap;font-weight:500}
+.m-price::after{content:" €";font-size:.78em;opacity:.7}
+.m-gf{
+  display:inline-block;font-size:.55rem;letter-spacing:.14em;color:var(--accent);
+  border:1px solid var(--accent-soft);padding:.12rem .36rem;border-radius:2px;
+  margin-left:.45rem;vertical-align:.12em;text-transform:uppercase;
+  white-space:nowrap;   /* never break "GLUTEN FREE" across two lines */
+}
+.m-text b{text-wrap:pretty}
+
+/* ---------- menu dietary filter ---------- */
+.menu-filter{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.4rem}
+.chip{
+  background:transparent;border:1px solid var(--line);color:var(--ink-soft);
+  border-radius:999px;padding:.5rem 1.1rem;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  transition:background var(--fast) var(--ease),color var(--fast),
+             border-color var(--fast),transform var(--fast) var(--ease);
+}
+.chip:hover{border-color:var(--accent-soft);color:var(--ink);transform:translateY(-2px)}
+.chip.on{background:var(--primary);border-color:var(--primary);color:#FBF7EE}
+.menu-empty{
+  grid-column:1/-1;color:var(--muted);font-style:italic;
+  padding:2rem 0;text-align:center;
+}
+.m-item[hidden],.menu-sec[hidden]{display:none}
+
+/* ---------- gallery ---------- */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:190px;gap:1rem}
+.gal figure{margin:0;overflow:hidden;border-radius:var(--radius);position:relative;background:var(--paper-3)}
+.gal img{width:100%;height:100%;object-fit:cover;
+  filter:sepia(.28) saturate(.88) brightness(1.03) contrast(.96);
+  transition:transform 1000ms var(--ease-out),filter 700ms var(--ease)}
+.gal figure:hover img{transform:scale(1.07);filter:sepia(.06) saturate(1.06) brightness(1.05) contrast(1.01)}
+.gal figure::after{content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(154,123,33,.26)}
+.gal .tall{grid-row:span 2}
+.gal .wide{grid-column:span 2}
+
+/* ---------- reviews: a dark stage ---------- */
+#recensioni{background:var(--ink-deep);color:#EFE7D6;overflow:hidden}
+#recensioni::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(90% 70% at 50% 0%,rgba(201,162,39,.16),transparent 62%),
+             radial-gradient(100% 100% at 50% 50%,transparent 45%,rgba(6,4,3,.6) 100%);
+}
+#recensioni .wrap{position:relative;z-index:1}
+#recensioni h2{color:#FBF7EE}
+#recensioni .eyebrow{color:var(--accent-lift)}
+#recensioni .eyebrow::before{background:var(--accent-lift)}
+/* a giant open quote sitting behind the whole section */
+#recensioni .sec-head{position:relative}
+#recensioni .sec-head::before{
+  content:"\201C";position:absolute;right:-1rem;top:-6rem;font-family:var(--f-head);
+  font-size:26rem;line-height:1;color:rgba(201,162,39,.07);pointer-events:none;
+}
+.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1.6rem,4vw,3rem)}
+.review{
+  background:transparent;border:0;border-top:1px solid rgba(201,162,39,.28);
+  border-radius:0;padding:1.8rem 0 0;position:relative;
+  transition:transform var(--mid) var(--ease-out);
+}
+.review::before{content:none}
+.review:hover{transform:translateY(-4px)}
+.review h3{
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent-lift);margin-bottom:1rem;font-family:var(--f-body);
+  font-weight:500;font-style:normal;
+}
+.review p{
+  color:rgba(239,231,214,.82);font-size:clamp(1.02rem,1.5vw,1.22rem);
+  font-family:var(--f-head);font-style:italic;line-height:1.5;margin:0;
+}
+
+/* ---------- booking ---------- */
+.book-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2.5rem,6vw,5rem)}
+form{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.field{display:flex;flex-direction:column;gap:.4rem}
+.field.span2{grid-column:span 2}
+.field.span3{grid-column:span 3}
+label{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+input,select,textarea{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  color:var(--ink);padding:.82rem .9rem;font:inherit;font-size:.92rem;
+  transition:border-color var(--mid),box-shadow var(--mid),background var(--mid);width:100%;
+}
+/* the popup list is drawn by the OS — it needs its own explicit colours,
+   or it inherits the system theme and the ink text vanishes into it */
+option,optgroup{background-color:#FBF7EE;color:#2A231C}
+option:checked,option:hover{background-color:#EFE7D6;color:#2A231C}
+select{
+  appearance:none;-webkit-appearance:none;
+  padding-right:2.4rem;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238B7D6B' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 1rem center;
+}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(139,26,26,.10)}
+textarea{resize:vertical;min-height:92px}
+.form-foot{grid-column:span 3;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-top:.4rem}
+.form-foot .or{color:var(--muted);font-size:.8rem;font-style:italic}
+.book-side{background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:2rem;align-self:start;box-shadow:var(--shadow-lift)}
+.book-side h3{font-size:1.3rem;margin-bottom:.7rem}
+.book-side p{color:var(--ink-soft);font-size:.9rem}
+.book-side a{color:var(--primary);border-bottom:1px solid var(--accent-soft)}
+.gift-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.1rem}
+.gift-row span{border:1px solid var(--accent-soft);color:var(--accent);border-radius:2px;
+  padding:.35rem .7rem;font-size:.82rem;font-variant-numeric:tabular-nums;
+  transition:background var(--fast),color var(--fast)}
+.gift-row span:hover{background:var(--accent);color:var(--card)}
+.form-msg{grid-column:span 3;color:var(--primary);font-size:.88rem;min-height:1.2em}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:3rem}
+.c-block h3{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--primary);
+  font-family:var(--f-body);font-weight:500;margin-bottom:.8rem}
+.c-block p{margin:0;color:var(--ink);line-height:1.8}
+.c-block a{color:var(--ink);border-bottom:1px solid var(--accent-soft);transition:color var(--mid)}
+.c-block a:hover{color:var(--primary)}
+.map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);
+  filter:sepia(.42) saturate(.72) contrast(.92) brightness(1.04);height:340px}
+.map iframe{width:100%;height:100%;border:0;display:block}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:2.6rem 0;background:var(--paper-3);
+  color:var(--muted);font-size:.8rem}
+.foot-in{display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;align-items:center}
+.foot-in a{border-bottom:1px solid transparent;transition:color var(--mid),border-color var(--mid)}
+.foot-in a:hover{color:var(--primary);border-bottom-color:var(--accent-soft)}
+
+/* ---------- loader: an ink monogram that draws itself ---------- */
+#loader{
+  position:fixed;inset:0;z-index:100;background:var(--paper);
+  display:grid;place-items:center;
+  transition:opacity var(--slow) var(--ease),visibility var(--slow);
+}
+#loader.done{opacity:0;visibility:hidden}
+.load-mark{width:150px;height:150px;overflow:visible}
+.load-mark path,.load-mark circle{
+  fill:none;stroke:var(--primary);stroke-width:1.4;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.load-mark .ring{stroke:var(--accent);stroke-dasharray:396;stroke-dashoffset:396;
+  animation:draw 1500ms var(--ease-out) forwards}
+.load-mark .letter{stroke-dasharray:340;stroke-dashoffset:340;
+  animation:draw 1400ms var(--ease-out) 260ms forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.load-word{
+  position:absolute;bottom:17%;font-family:var(--f-head);font-size:.82rem;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--muted);
+  opacity:0;animation:fadeup 900ms var(--ease-out) 700ms forwards;
+}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:.9;transform:none}}
+
+/* ---------- notice ---------- */
+.notice{position:fixed;left:50%;bottom:1.5rem;transform:translateX(-50%) translateY(140%);
+  z-index:70;background:var(--card);border:1px solid var(--accent-soft);
+  border-radius:var(--radius);padding:1rem 1.3rem;display:flex;gap:1rem;align-items:center;
+  max-width:min(94vw,34rem);transition:transform var(--slow) var(--ease-out);
+  box-shadow:var(--shadow-lift)}
+.notice.show{transform:translateX(-50%) translateY(0)}
+.notice b{display:block;font-weight:500;margin-bottom:.15rem;color:var(--ink)}
+.notice p{margin:0;color:var(--muted);font-size:.86rem}
+.notice button{background:none;border:0;color:var(--muted);font-size:1.2rem;line-height:1;padding:.2rem}
+
+/* ---------- scroll reveal ---------- */
+.reveal{opacity:0;transform:translateY(30px);
+  transition:opacity 900ms var(--ease-out),transform 900ms var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:80ms}.reveal.d2{transition-delay:160ms}
+.reveal.d3{transition-delay:240ms}.reveal.d4{transition-delay:320ms}
+.reveal.d5{transition-delay:400ms}
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){
+  .story-grid,.book-grid{grid-template-columns:1fr}
+  .story-img{order:-1;max-height:360px}
+  .dishes{grid-template-columns:repeat(2,1fr)}
+  .menu-cols{grid-template-columns:1fr}
+  .reviews{grid-template-columns:1fr}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .nav-links{
+    position:fixed;inset:0;flex-direction:column;justify-content:center;align-items:center;
+    gap:2rem;background:rgba(245,239,226,.98);backdrop-filter:blur(18px);
+    transform:translateX(100%);transition:transform var(--slow) var(--ease-out);margin:0;
+  }
+  .nav-links.open{transform:none}
+  .nav-links a{font-size:1.05rem}
+  .burger{display:flex;order:3}
+  .burger.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+  .nav{gap:.8rem}
+  .tel span{display:none}
+  .dishes{grid-template-columns:1fr}
+  form{grid-template-columns:1fr 1fr}
+  .field.span3,.form-foot,.form-msg{grid-column:span 2}
+  .hero-veil{background:
+    linear-gradient(180deg,rgba(245,239,226,.72),var(--paper) 74%),
+    radial-gradient(70% 45% at 70% 26%,rgba(201,162,39,.18),transparent 66%)}
+  .socials{display:none}
+  .lamp{display:none}
+}
+
+/* ===========================================================
+   VINTAGE LAYER — aged paper, print grain, letterpress ink.
+   All decorative, all pointer-events:none.
+   =========================================================== */
+
+/* 1. Paper grain over the whole page */
+body::before{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+  opacity:.30;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+}
+/* 2. Foxing & edge shade — the page has been handled */
+body::after{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 50% -12%,rgba(201,162,39,.13),transparent 56%),
+    radial-gradient(100% 100% at 50% 50%,transparent 58%,rgba(120,96,62,.16) 100%);
+}
+/* the nav stays fixed — never give it position:relative here */
+main,footer{position:relative;z-index:2}
+
+/* 3. Laid-paper texture on raised surfaces */
+.book-side,.notice,.menu-note{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23p)' opacity='.30'/%3E%3C/svg%3E"),
+    linear-gradient(158deg,rgba(154,123,33,.05),transparent 60%);
+  background-blend-mode:multiply,normal;
+}
+
+/* 4. Letterpress: type pressed into the sheet */
+h1,h2,.menu-sec h3,.brand{
+  text-shadow:0 1px 0 rgba(251,247,238,.85),0 -1px 0 rgba(42,35,28,.05);
+}
+.eyebrow,.c-block h3,label{text-shadow:0 1px 0 rgba(251,247,238,.8)}
+
+/* 5. Printed rule with a shadow line beneath */
+.rule{box-shadow:0 1px 0 rgba(251,247,238,.7)}
+
+/* 6. Menu prices read like a struck carta */
+.m-price{text-shadow:0 1px 0 rgba(251,247,238,.8)}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+  .reveal,.wipe::before,.line-mask>span,
+  .hero .eyebrow,.hero .rule,.hero .sub,.hero-cta{opacity:1;transform:none}
+  .wipe::before{transform:scaleX(0)}
+  .marquee-track{animation:none}
+  .scene-bg{filter:saturate(.5) brightness(.3) sepia(.4);transform:scale(1.05)}
+  .scene-plate,.scene-copy h3,.scene-copy p,.scene-no{opacity:1!important;transform:none!important}
+  .scene-copy .rule{width:120px!important}
+  .scene-plate > svg circle{stroke-dashoffset:0!important}
+  /* the shatter is pure motion: reveal the ingredients with no flight */
+  .shard{display:none}
+  .scene.broken .ingredients{opacity:1;visibility:visible}
+  .scene.broken .ing{opacity:1;transform:none;transition-delay:0s!important}
+  .scene.broken .ing-note{opacity:1}
+  .ing-ico{opacity:1;transform:none}
+  .ingredients{transform:none}
+  .lamp{display:none}
+  #loader{display:none}
+  .hero-plate{transform:none}
+}
+@media print{
+  .nav,#loader,.notice,.scroll-cue,.lamp,.progress,.marquee{display:none!important}
+  body::before,body::after{display:none}
+}

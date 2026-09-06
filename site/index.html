@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Osteria il Bertoldo — Ristorante nel centro storico di Verona</title>
+<meta name="description" content="Osteria il Bertoldo, dal 1988 nel cuore di Verona. Pesce freschissimo, pasta fatta in casa, carne selezionata e cucina senza glutine. Vicolo Cadrega 2/a.">
+<link rel="icon" href="../images/icons/favicon-192x192.png">
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="Osteria il Bertoldo — Verona">
+<meta property="og:description" content="Dal 1988 ristorante di qualità nel cuore di Verona. Pesce freschissimo, pasta fatta in casa, cucina senza glutine.">
+<meta property="og:image" content="../images/home/home7.jpg">
+<meta property="og:locale" content="it_IT">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:url" content="https://www.osteriabertoldo.com/">
+<meta property="og:site_name" content="Osteria il Bertoldo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Osteria il Bertoldo — Verona">
+<meta name="twitter:description" content="Dal 1988 ristorante di qualità nel cuore di Verona. Pesce freschissimo, pasta fatta in casa, cucina senza glutine.">
+<meta name="twitter:image" content="https://www.osteriabertoldo.com/images/home/home7.jpg">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#F5EFE2">
+<link rel="canonical" href="https://www.osteriabertoldo.com/">
+<!-- one URL serves both languages (the toggle is client-side), so both
+     hreflang alternates point here; x-default covers everything else -->
+<link rel="alternate" hreflang="it" href="https://www.osteriabertoldo.com/">
+<link rel="alternate" hreflang="en" href="https://www.osteriabertoldo.com/">
+<link rel="alternate" hreflang="x-default" href="https://www.osteriabertoldo.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="../images/home/home7.webp" type="image/webp" fetchpriority="high">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Osteria il Bertoldo",
+  "image":"https://www.osteriabertoldo.com/images/home/home7.jpg",
+  "address":{"@type":"PostalAddress","streetAddress":"Vicolo Cadrega 2/a","addressLocality":"Verona","postalCode":"37121","addressCountry":"IT"},
+  "telephone":"+39 045 8015604",
+  "email":"osteriabertoldo@gmail.com",
+  "servesCuisine":["Italian","Seafood","Veronese"],
+  "priceRange":"€€€",
+  "foundingDate":"1988",
+  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification",
+    "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens":"12:00","closes":"22:00"}],
+  "sameAs":["https://it-it.facebook.com/OsteriaIlBertoldo","https://www.instagram.com/osteriailbertoldo_verona/"]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#home" data-t="a11y.skip">Vai al contenuto</a>
+
+<!-- loader: an ink monogram that draws itself -->
+<div id="loader">
+  <svg class="load-mark" viewBox="0 0 120 120" aria-hidden="true">
+    <circle class="ring" cx="60" cy="60" r="54"/>
+    <path class="letter" d="M44 34h20a13 13 0 0 1 0 26H44V34zm0 26h23a13 13 0 0 1 0 26H44V60z"/>
+  </svg>
+  <div class="load-word">Bertoldo</div>
+</div>
+<div class="progress" id="progress"></div>
+<div class="lamp" id="lamp" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="#home" class="brand">Osteria il <span>Bertoldo</span></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#home"      data-t="nav.home">Home</a>
+    <a href="#storia"    data-t="nav.storia">Storia</a>
+    <a href="#menu"      data-t="nav.menu">Menù</a>
+    <a href="#galleria"  data-t="nav.galleria">Galleria</a>
+    <a href="#contatti"  data-t="nav.contatti">Contatti</a>
+  </nav>
+  <div class="nav-right">
+    <div class="lang">
+      <button id="langIt" aria-pressed="true">IT</button><i>/</i><button id="langEn" aria-pressed="false">EN</button>
+    </div>
+    <a class="tel" href="tel:+390458015604">
+      <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+      <span>045 8015604</span>
+    </a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+<!-- hero -->
+<section class="hero" id="home">
+  <div class="hero-plate" id="heroPlate"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-frame"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow" data-t="hero.eyebrow">Verona · dal 1988</p>
+      <h1 id="heroTitle"><span class="line-mask"><span>Osteria</span></span><span class="line-mask"><span><em>il Bertoldo</em></span></span></h1>
+      <hr class="rule">
+      <p class="sub" data-t="hero.sub">Ristorante di qualità nel cuore del centro storico</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#prenota" data-t="hero.ctaBook">Prenota un tavolo</a>
+        <a class="btn btn-ghost"   href="#menu"    data-t="hero.ctaMenu">Scopri il menù</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span data-t="hero.scroll">Scorri</span></div>
+  <div class="socials">
+    <a href="https://it-it.facebook.com/OsteriaIlBertoldo" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+    <a href="https://www.instagram.com/osteriailbertoldo_verona/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.8-.1zm0 3.4A6.4 6.4 0 1 0 18.4 12 6.4 6.4 0 0 0 12 5.6zm0 10.5A4.1 4.1 0 1 1 16.1 12 4.1 4.1 0 0 1 12 16.1zm6.6-10.9a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z"/></svg></a>
+    <a href="https://www.tripadvisor.it/Restaurant_Review-g187871-d1639946-Reviews-Osteria_Il_Bertoldo-Verona_Province_of_Verona_Veneto.html" target="_blank" rel="noopener" aria-label="TripAdvisor"><svg viewBox="0 0 24 24"><circle cx="7.5" cy="12" r="2.1"/><circle cx="16.5" cy="12" r="2.1"/><path d="M12 5.6c-3 0-5.7.9-7.7 2.3H1l1.7 1.9A5.6 5.6 0 0 0 12 16.3a5.6 5.6 0 0 0 9.3-6.5L23 7.9h-3.3A13.4 13.4 0 0 0 12 5.6zm-4.5 12a5.6 5.6 0 1 1 0-11.2 5.6 5.6 0 0 1 0 11.2zm9 0a5.6 5.6 0 1 1 0-11.2 5.6 5.6 0 0 1 0 11.2z" opacity=".55"/></svg></a>
+  </div>
+</section>
+
+<!-- running printed banner -->
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+<!-- story -->
+<section id="storia">
+  <div class="wrap story-grid">
+    <div class="story-copy reveal">
+      <p class="eyebrow" data-t="storia.eyebrow">La nostra storia</p>
+      <h2 data-t="storia.title">Dal 1988 nel cuore di Verona</h2>
+      <hr class="rule">
+      <div id="storiaBody"></div>
+      <div class="pillars" id="pillars"></div>
+    </div>
+    <div class="story-img wipe reveal d2">
+      <picture><source srcset="../images/home/home7.webp" type="image/webp"><img width="700" height="550" src="../images/home/home7.jpg" alt="La sala dell'Osteria il Bertoldo" loading="lazy"></picture>
+    </div>
+  </div>
+</section>
+
+<!-- dishes -->
+<section id="piatti">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow" data-t="piatti.eyebrow">I nostri piatti</p>
+      <h2 data-t="piatti.title">Le specialità della casa</h2>
+      <hr class="rule">
+      <p class="dish-hint" id="dishHint"></p>
+    </div>
+  </div>
+  <!-- the bands break out of .wrap deliberately: they are full-bleed -->
+  <div class="dishes" id="dishes"></div>
+</section>
+
+<!-- menu -->
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow" data-t="menu.eyebrow">Il menù</p>
+      <h2 data-t="menu.title">Il nostro menù</h2>
+      <hr class="rule">
+    </div>
+    <div class="menu-note reveal" id="menuNote"></div>
+    <div class="menu-filter reveal" id="menuFilter" role="group"></div>
+    <div class="menu-cols" id="menuCols"></div>
+  </div>
+</section>
+
+<!-- gallery -->
+<section id="galleria">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow" data-t="galleria.eyebrow">Galleria</p>
+      <h2 data-t="galleria.title">Il locale</h2>
+      <hr class="rule">
+      <p class="lede" data-t="galleria.sub"></p>
+    </div>
+    <div class="gal reveal d1">
+      <figure class="wide tall wipe"><picture><source srcset="../images/home/home7.webp" type="image/webp"><img width="700" height="550" src="../images/home/home7.jpg" alt="La sala" loading="lazy"></picture></figure>
+      <figure class="wipe"><picture><source srcset="../images/blog/blog3.webp" type="image/webp"><img width="535" height="535" src="../images/blog/blog3.jpg" alt="Risotto all'Amarone" loading="lazy"></picture></figure>
+      <figure class="wipe"><picture><source srcset="../images/blog/blog5.webp" type="image/webp"><img width="535" height="535" src="../images/blog/blog5.jpg" alt="Tagliata di tonno" loading="lazy"></picture></figure>
+      <figure class="wipe"><picture><source srcset="../images/blog/blog1.webp" type="image/webp"><img width="535" height="535" src="../images/blog/blog1.jpg" alt="Spaghetti alla bisque" loading="lazy"></picture></figure>
+      <figure class="wipe"><picture><source srcset="../images/blog/blog2.webp" type="image/webp"><img width="535" height="535" src="../images/blog/blog2.jpg" alt="Tagliolini ai porcini" loading="lazy"></picture></figure>
+      <figure class="wipe"><picture><source srcset="../images/blog/blog4.webp" type="image/webp"><img width="535" height="535" src="../images/blog/blog4.jpg" alt="Tagliatelle allo scoglio" loading="lazy"></picture></figure>
+      <figure class="wipe"><picture><source srcset="../images/blog/blog6.webp" type="image/webp"><img width="535" height="535" src="../images/blog/blog6.jpg" alt="Dolce al pistacchio" loading="lazy"></picture></figure>
+    </div>
+  </div>
+</section>
+
+<!-- reviews -->
+<section id="recensioni">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow" data-t="recensioni.eyebrow">Recensioni</p>
+      <h2 data-t="recensioni.title">Cosa dicono di noi</h2>
+      <hr class="rule">
+    </div>
+    <div class="reviews" id="reviews"></div>
+  </div>
+</section>
+
+<!-- booking -->
+<section id="prenota">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow" data-t="prenota.eyebrow">Prenotazioni</p>
+      <h2 data-t="prenota.title">Prenota un tavolo</h2>
+      <hr class="rule">
+      <p class="lede" data-t="prenota.intro"></p>
+    </div>
+    <div class="book-grid">
+      <form id="bookForm" class="reveal" novalidate>
+        <div class="field"><label for="d" data-t="prenota.f.date">Data</label><input type="date" id="d" required></div>
+        <div class="field"><label for="t" data-t="prenota.f.time">Orario</label>
+          <select id="t" required>
+            <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
+            <option>14:00</option><option>19:00</option><option>19:30</option><option>20:00</option>
+            <option>20:30</option><option>21:00</option>
+          </select></div>
+        <div class="field"><label for="p" data-t="prenota.f.people">Persone</label>
+          <select id="p" required>
+            <option>1</option><option selected>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8+</option>
+          </select></div>
+        <div class="field span2"><label for="n" data-t="prenota.f.name">Nome e cognome</label><input type="text" id="n" required></div>
+        <div class="field"><label for="ph" data-t="prenota.f.phone">Telefono</label><input type="tel" id="ph" required></div>
+        <div class="field span3"><label for="em" data-t="prenota.f.email">Email</label><input type="email" id="em" required></div>
+        <div class="field span3"><label for="no" data-t="prenota.f.notes">Note</label><textarea id="no"></textarea></div>
+        <div class="form-foot">
+          <button type="submit" class="btn btn-primary" data-t="prenota.f.submit">Invia richiesta</button>
+          <span class="or" data-t="prenota.f.or">oppure</span>
+          <a class="btn btn-ghost" href="tel:+390458015604" data-t="prenota.call">Chiama 045 8015604</a>
+        </div>
+        <p class="form-msg" id="formMsg" role="status"></p>
+      </form>
+      <aside class="book-side reveal d2">
+        <h3 data-t="prenota.giftTitle">Buoni regalo</h3>
+        <p data-t="prenota.giftBody"></p>
+        <div class="gift-row"><span>50 €</span><span>100 €</span><span>150 €</span><span>200 €</span></div>
+        <hr class="rule">
+        <p><a href="mailto:osteriabertoldo@gmail.com">osteriabertoldo@gmail.com</a></p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- contact -->
+<section id="contatti">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow" data-t="contatti.eyebrow">Contatti</p>
+      <h2 data-t="contatti.title">Dove siamo</h2>
+      <hr class="rule">
+    </div>
+    <div class="contact-grid reveal d1">
+      <div class="c-block"><h3 data-t="contatti.addrLabel">Indirizzo</h3><p data-t="contatti.addr"></p></div>
+      <div class="c-block"><h3 data-t="contatti.contactLabel">Contatti</h3>
+        <p><a href="tel:+390458015604">045 8015604</a><br><a href="mailto:osteriabertoldo@gmail.com">osteriabertoldo@gmail.com</a></p></div>
+      <div class="c-block"><h3 data-t="contatti.hoursLabel">Orario</h3><p data-t="contatti.hours"></p></div>
+    </div>
+    <div class="map reveal d2">
+      <iframe title="Mappa" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=10.9955%2C45.4415%2C11.0015%2C45.4455&layer=mapnik&marker=45.4435%2C10.9985"></iframe>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© <span id="yr"></span> Osteria il Bertoldo — P.IVA 04573830231</span>
+    <span>
+      <a href="https://www.iubenda.com/privacy-policy/37102804" target="_blank" rel="noopener nofollow" data-t="footer.privacy">Privacy Policy</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.iubenda.com/privacy-policy/37102804/cookie-policy" target="_blank" rel="noopener nofollow" data-t="footer.cookie">Cookie Policy</a>
+    </span>
+  </div>
+</footer>
+
+<div class="notice" id="notice" hidden>
+  <div><b id="noticeT"></b><p id="noticeB"></p></div>
+  <button id="noticeX" aria-label="Chiudi">×</button>
+</div>
+
+<script src="content.js"></script>
+<script src="icons.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
